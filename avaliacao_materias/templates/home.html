@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
-<div class="container text-center mt-5">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -52,9 +51,10 @@
 <div class="row">
   {% for lista in lista_avaliacoes%}
   <div class="col">      
-    <div class="card">
-      <div class="card-body" style="background-color: #c9c9c9;">
-        <p class="card-text">{{lista.materia}}</p>
+    <div class="card neonText">
+      <div class="card-body" >
+        <p class="card-text"><b>{{lista.materia}}</b></p>
+        <hr>
         <p class="card-text">{{lista.avaliacao}}</p>
       </div>
     </div>
