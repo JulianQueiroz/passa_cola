@@ -6,12 +6,23 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
+
+from avaliacao_materias.models import Avaliacao
 # Create your views here.
 
 
 def home(request):
-    return render(request,'home.html')
-
+    enviado = False
+    lista_avaliacoes = Avaliacao.objects.all()
+    if request.method == 'POST':
+        materia = request.POST.get('materia')
+        texto_avaliacao = request.POST.get('avaliacao')
+        avaliacao = Avaliacao(materia=materia, avaliacao=texto_avaliacao)
+        avaliacao.save()  
+        enviado = True
+        return redirect('listar_avaliacoes')
+    return render(request, 'home.html', {'enviado': enviado, 'lista_avaliacoes': lista_avaliacoes})
+    
 def cadastro(request):
     if request.method == 'GET':
         return render(request, 'registration/cadastro.html')
@@ -27,3 +38,18 @@ def cadastro(request):
         user = User.objects.create_user(username=username,email=email,password=senha)
         user.save()
         return HttpResponse('Cadastrado com sucesso')
+
+def avaliacoes(request):
+    enviado = False
+    if request.method == 'POST':
+        materia = request.POST.get('materia')
+        texto_avaliacao = request.POST.get('avaliacao')
+        avaliacao = Avaliacao(materia=materia, avaliacao=texto_avaliacao)
+        avaliacao.save()  
+        enviado = True
+        return redirect('listar_avaliacoes') # esse return é executado quando o método HTTP da requisição é 'POST', ou seja, quando o formulário é submetido. Ele redireciona para a página 'listar_avaliacoes' após o envio do formulário.
+    return render(request, 'home.html', {'enviado': enviado}) #Esse return é executado quando o método HTTP da requisição não é 'POST', ou seja, quando a página é acessada normalmente (não por meio de uma submissão de formulário).
+
+def listar_avaliacoes(request):
+    lista_avaliacoes = Avaliacao.objects.all()
+    return render(request, 'listar_avaliacoes.html',{'lista_avaliacoes':lista_avaliacoes})
