@@ -14,6 +14,13 @@ from avaliacao_materias.models import Avaliacao
 def home(request):
     enviado = False
     lista_avaliacoes = Avaliacao.objects.all()
+
+    if 'search' in request.GET:
+        search_query = request.GET.get('search') #nao entendi
+        print("Termo de busca:", search_query)
+        lista_avaliacoes = Avaliacao.objects.filter(materia__icontains=search_query)
+        print("Avaliações filtradas:", lista_avaliacoes)
+
     if request.method == 'POST':
         materia = request.POST.get('materia')
         texto_avaliacao = request.POST.get('avaliacao')
