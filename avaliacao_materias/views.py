@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from avaliacao_materias.models import Avaliacao
 # Create your views here.
@@ -15,11 +16,12 @@ def home(request):
     enviado = False
     lista_avaliacoes = Avaliacao.objects.all()
 
+    search_term = ''
     if 'search' in request.GET:
-        search_query = request.GET.get('search') #nao entendi
-        print("Termo de busca:", search_query)
-        lista_avaliacoes = Avaliacao.objects.filter(materia__icontains=search_query)
-        print("Avaliações filtradas:", lista_avaliacoes)
+        search_term = request.GET.get('search') #é GET.get() pois é a sintaxe correta para acessar o valor específico que digitamos na search
+        lista_avaliacoes = Avaliacao.objects.all().filter(Q(materia__icontains=search_term) | Q(avaliacao__icontains = search_term))
+        return render(request,'listar_avaliacoes.html',{'lista_avaliacoes':lista_avaliacoes,'search_term':search_term})
+
 
     if request.method == 'POST':
         materia = request.POST.get('materia')
