@@ -19,7 +19,8 @@
             </div>
             <div class="form-group">
               <label for="avaliacao">Escreva sua avaliação:</label>
-              <textarea class="form-control" id="avaliacao" name="avaliacao" rows="5" required></textarea>
+              <textarea class="form-control" id="avaliacao" name="avaliacao" required>
+              </textarea>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -27,19 +28,6 @@
             </div>
           </form>
         </div>
-        
-        {% if enviado %}
-        <h2>
-          Seu formulário foi enviado com sucesso!
-
-        </h2>
-
-        <script>
-            $(document).ready(function(){
-                $('#modalConfirmacao').modal('show');
-            });
-        </script>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -55,7 +43,11 @@
       <div class="card-body" >
         <p class="card-text"><b>{{lista.materia}}</b></p>
         <hr>
-        <p class="card-text">{{lista.avaliacao}}</p>
+        <p class="card-text">{{lista.avaliacao|truncatechars:500}}</p>
+        {% if lista.avaliacao|length > 500 %}
+        <a href="#">Ver mais</a>
+        {% endif %}
+
       </div>
     </div>
   </div>
