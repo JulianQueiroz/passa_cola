@@ -10,7 +10,10 @@
     <div class="card">
       <div class="card-body" style="background-color: #c9c9c9;">
         <p class="card-text">{{lista.materia}}</p>
-        <p class="card-text">{{lista.avaliacao}}</p>
+        <p class="card-text">{{lista.avaliacao|truncatechars:500}}</p>
+        {% if lista.avaliacao|length > 500 %}
+        <a href="#">Ver mais</a>
+        {% endif %}
       </div>
     </div>
   </div>

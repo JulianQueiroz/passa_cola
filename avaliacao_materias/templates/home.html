@@ -38,8 +38,8 @@
   <h2>Últimas avaliações:</h2>
 <div class="row">
   {% for lista in lista_avaliacoes%}
-  <div class="col">      
-    <div class="card neonText">
+  <div class="col-lg-6 col-md-6 col-sm-12 mb-4">      
+    <div class="card neonText mb-4">
       <div class="card-body" >
         <p class="card-text"><b>{{lista.materia}}</b></p>
         <hr>
@@ -53,6 +53,7 @@
   </div>
   {% endfor %}
 </div>
+<a href="listar_avaliacoes.html"><button class="btn btn-primary ver-mais">Ver mais</button></a>
 </div>
 
 {% endblock %}
