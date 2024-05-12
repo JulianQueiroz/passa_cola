@@ -6,18 +6,19 @@
 <h2>Últimas avaliações:</h2>
 <div class="row">
   {% for lista in lista_avaliacoes%}
-  <div class="col">      
-    <div class="card">
-      <div class="card-body" style="background-color: #c9c9c9;">
-        <p class="card-text">{{lista.materia}}</p>
+  <div class="col-lg-6 col-md-6 col-sm-12 mb-4">      
+    <div class="card neonText mb-4">
+      <div class="card-body" >
+        <p class="card-text"><b>{{lista.materia}}</b></p>
+        <hr>
         <p class="card-text">{{lista.avaliacao|truncatechars:500}}</p>
         {% if lista.avaliacao|length > 500 %}
-        <a href="#">Ver mais</a>
+        <a href="">Ver mais</a>
         {% endif %}
+
       </div>
     </div>
   </div>
   {% endfor %}
-</div>
-</div>
+</div></div>
 {% endblock %}

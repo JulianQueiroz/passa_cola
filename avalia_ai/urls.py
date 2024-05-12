@@ -26,5 +26,6 @@ urlpatterns = [
     path('cadastro/',views.cadastro,name='cadastro'),
     path('avaliacoes/', views.avaliacoes, name='avaliacoes'),  # Adicione esta linha para a view 'avaliacoes'
     path('listar_avaliacoes/', views.listar_avaliacoes, name='listar_avaliacoes'),  # Adicione esta linha para a view 'avaliacoes'
+    path('avaliacao/<int:id>/', views.avaliacao, name='avaliacao'),  # Adicione esta linha para a view 'avaliacoes'
 
 ]

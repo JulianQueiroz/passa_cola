@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import redirect,render
 from django.contrib.auth.models import User
@@ -30,6 +30,7 @@ def home(request):
         avaliacao.save()  
         enviado = True
         return redirect('listar_avaliacoes')
+
     return render(request, 'home.html', {'enviado': enviado, 'lista_avaliacoes': lista_avaliacoes})
     
 def cadastro(request):
@@ -62,3 +63,8 @@ def avaliacoes(request):
 def listar_avaliacoes(request):
     lista_avaliacoes = Avaliacao.objects.all()
     return render(request, 'listar_avaliacoes.html',{'lista_avaliacoes':lista_avaliacoes})
+
+def avaliacao(request,id): #para obter a id do objeto. 'pk' = Primary Key
+    teste = Avaliacao.objects.get(pk=id)
+    print(teste)
+    return render(request, 'avaliacao.html',{'teste':teste})

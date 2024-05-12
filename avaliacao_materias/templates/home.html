@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
+
+<head>
+  <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<div class="container text-center mt-5">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -39,13 +44,13 @@
 <div class="row">
   {% for lista in lista_avaliacoes%}
   <div class="col-lg-6 col-md-6 col-sm-12 mb-4">      
-    <div class="card neonText mb-4">
-      <div class="card-body" >
+    <div class="card neonText mb-4" id="card-home">
+      <div class="card-body" id="card-body-home">
         <p class="card-text"><b>{{lista.materia}}</b></p>
         <hr>
         <p class="card-text">{{lista.avaliacao|truncatechars:500}}</p>
         {% if lista.avaliacao|length > 500 %}
-        <a href="#">Ver mais</a>
+        <a href="{% url 'avaliacao' id=lista.id %}">Ver mais</a>
         {% endif %}
 
       </div>
@@ -53,7 +58,7 @@
   </div>
   {% endfor %}
 </div>
-<a href="listar_avaliacoes.html"><button class="btn btn-primary ver-mais">Ver mais</button></a>
+<a href="{%url  'listar_avaliacoes' %}"><button class="btn btn-primary ver-mais">Ver mais</button></a>
 </div>
 
 {% endblock %}

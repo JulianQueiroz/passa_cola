@@ -1,32 +1,10 @@
 body{
   margin-bottom: 2em;
 }
-.card-body,.card{
-    border: 2px solid;
-    border-radius: 10px;
-    border-color: #fff;
-    animation: pulse 2.5s infinite alternate; /* aplica a animação */
-}
-.card{
-    border: 0;
-}
+
 .ver-mais{
   margin-top: 2em;
 }
-@keyframes pulse {
-    0% {
-      border-color: #00ff00; /* cor inicial da borda (neon verde) */
-      transform: scale(1) translate(0, 0); /* sem translação */
-    }
-    50% {
-      border-color: #00ff00; /* cor da borda no meio da animação (neon verde) */
-      transform: scale(1.01) translate(-0.2px, -0.2px); /* pequenas translações para cima e para a esquerda */
-    }
-    100% {
-      border-color: #00ff00; /* cor final da borda (neon verde) */
-      transform: scale(1) translate(0, 0); /* sem translação */
-    }
-  }
-  
+
   
   
