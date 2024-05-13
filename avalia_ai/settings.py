@@ -25,7 +25,7 @@ SECRET_KEY = '82eqb3aptsbf-#up($aj(wcls!_4z3=9@r%=7j9v0g_$hmew+d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [passa-cola.onrender.com]
 
 
 # Application definition
