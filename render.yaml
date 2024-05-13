@@ -3,8 +3,6 @@ databases:
     plan: free
     databaseName: avaliacoes  # Nome do seu banco de dados MySQL
     user: root  # Nome de usuário do banco de dados MySQL
-    password: juliana  # Senha do banco de dados MySQL
-    type: mysql  # Tipo de banco de dados
 
 services:
   - type: web
