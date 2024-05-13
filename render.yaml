@@ -1,0 +1,24 @@
+databases:
+  - name: passa_cola
+    plan: free
+    databaseName: avaliacoes  # Nome do seu banco de dados MySQL
+    user: root  # Nome de usuário do banco de dados MySQL
+    password: juliana  # Senha do banco de dados MySQL
+    type: mysql  # Tipo de banco de dados
+
+services:
+  - type: web
+    plan: free
+    name: avalia_ai
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn avalia_ai.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: avalia_ai_db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
