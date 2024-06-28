@@ -25,7 +25,7 @@ SECRET_KEY = '82eqb3aptsbf-#up($aj(wcls!_4z3=9@r%=7j9v0g_$hmew+d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['passa-cola.onrender.com',"127.0.0.1"]
+ALLOWED_HOSTS = ['.vercel.app',"127.0.0.1",'.now.sh','localhost']
 
 
 # Application definition
@@ -78,13 +78,12 @@ WSGI_APPLICATION = 'avalia_ai.wsgi.application'
 
 DATABASES = {
  'default': {
-     'NAME': 'avaliacoes',
-     'ENGINE': 'django.db.backends.mysql',
-     'USER': 'root',
-     'PASSWORD': 'juliana',
-     'OPTIONS': {
-       'autocommit': True,
-     },
+     'NAME': 'railway',
+     'USER': 'postgres',
+     'ENGINE': 'django.db.backends.postgresql',
+     'PASSWORD': 'NpCVbTsNGOmajpUvTFpbJsdEbyTKaaHZ',
+     'HOST':'roundhouse.proxy.rlwy.net',
+     'PORT':'44845'
  }
 }
 
@@ -129,8 +128,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
