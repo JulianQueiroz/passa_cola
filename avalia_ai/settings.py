@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from decouple import config,Csv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,16 +75,26 @@ WSGI_APPLICATION = 'avalia_ai.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
- 'default': {
-     'NAME': 'railway',
-     'USER': 'postgres',
-     'ENGINE': 'django.db.backends.postgresql',
-     'PASSWORD': 'NpCVbTsNGOmajpUvTFpbJsdEbyTKaaHZ',
-     'HOST':'roundhouse.proxy.rlwy.net',
-     'PORT':'44845'
- }
+ENVIRONMENT = config('ENVIROMENT', default = 'development')
+if ENVIRONMENT == 'production':
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('PROD_DATABASE_NAME'),
+        'USER': config('PROD_DATABASE_USER'),
+        'PASSWORD': config('PROD_DATABASE_PASSWORD'),
+        'HOST': config('PROD_DATABASE_HOST'),
+        'PORT': config('PROD_DATABASE_PORT'),
+    }
+}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': config('DEV_DATABASE_NAME'),
+            'USER': config('DEV_DATABASE_USER'),
+            'PASSWORD': config('DEV_DATABASE_PASSWORD'),
+        }
 }
 
 
