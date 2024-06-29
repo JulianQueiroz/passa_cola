@@ -25,9 +25,9 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('accounts/',include('django.contrib.auth.urls')),
     path('cadastro/',views.cadastro,name='cadastro'),
-    path('avaliacoes/', views.avaliacoes, name='avaliacoes'),  # Adicione esta linha para a view 'avaliacoes'
-    path('listar_avaliacoes/', views.listar_avaliacoes, name='listar_avaliacoes'),  # Adicione esta linha para a view 'avaliacoes'
-    path('avaliacao/<int:id>/', views.avaliacao, name='avaliacao'),  # Adicione esta linha para a view 'avaliacoes'
+    path('avaliacoes/', views.avaliacoes, name='avaliacoes'),
+    path('listar_avaliacoes/', views.listar_avaliacoes, name='listar_avaliacoes'),
+    path('avaliacao/<int:id>/', views.avaliacao, name='avaliacao'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
